@@ -15,7 +15,7 @@ const MenuProps = {
 
 export const CustomSelect = ({
   options = [],
-  onSelectChange,
+  onChange,
   isMulti,
   label = '',
   disabled = false,
@@ -30,7 +30,7 @@ export const CustomSelect = ({
         id="demo-multiple-name"
         multiple={isMulti}
         value={selectedValue}
-        onChange={onSelectChange}
+        onChange={onChange}
         input={<OutlinedInput label={label} />}
         MenuProps={MenuProps}
         disabled={disabled}
