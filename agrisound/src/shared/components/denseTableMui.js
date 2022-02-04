@@ -1,49 +1,39 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
+export default function DenseTable({ width, size, names, relatedArray }) {
+  console.log(relatedArray[0]);
 
-const rows = [
-  createData('Day Light Hours', 159, 6.0, 24, 4.0),
-  createData('Weather', 237, 9.0, 37, 4.3),
-  createData('Wind Speeds', 262, 16.0, 24, 6.0),
-  createData('Day Temp', 305, 3.7, 67, 4.3),
-];
+  function createData(name, ...relatedArray) {
+    return { name, ...relatedArray };
+  }
 
-export default function DenseTable() {
+  let rows = names.map((name, index) => {
+    return createData(name, relatedArray[index]);
+  });
+
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        {/* <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-          </TableRow>
-        </TableHead> */}
+      <Table sx={{ minWidth: width }} size={size} aria-label="a dense table">
         <TableBody>
           {rows.map((row) => (
             <TableRow
               key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                <b>{row.name}</b>
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell >{relatedArray[0]}</TableCell>
+              <TableCell >{relatedArray[1]}</TableCell>
+              <TableCell >{relatedArray[2]}</TableCell>
+              {relatedArray[2].map(({ tempHigh, tempLow }, index)=>{<TableCell >{tempHigh/tempLow}</TableCell>})}
+              
             </TableRow>
           ))}
         </TableBody>
