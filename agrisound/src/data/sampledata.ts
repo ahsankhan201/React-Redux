@@ -19,7 +19,7 @@ export const weatherIcons = {
     { label: 'Bardsley France', value: 'Bardsley France' },
   ];
   
-  export const datePickerDropDownConfig = {
+  export const datePickerDropDownConfig:any = {
     days: [
         { label:'1 week', value:7},
         { label:'2 weeks', value:14},
@@ -40,7 +40,7 @@ export const weatherIcons = {
     ]
 }
 
-  export const pollinatorReportSampleData = {
+  export const pollinatorReportSampleData:any = {
     days: [
       {
         label: new Date('30 Nov 2021').toLocaleDateString(),
@@ -351,8 +351,12 @@ export const weatherIcons = {
       siteLocation: { lat: 45.2635887, lng: 0.1488879 },
     },
   ];
-  
-  export const mapFarms = [
+  type mapFarmsType = {
+      farmId: number,
+      farmName: string,
+  }[]
+
+  export const mapFarms:mapFarmsType = [
     {
       farmId: 1,
       farmName: 'Bardsley South',
@@ -366,8 +370,12 @@ export const weatherIcons = {
       farmName: 'Bardsley France',
     },
   ];
+  type mapGroupsType = {
+      groupId: number,
+      groupName: string,
+  }[]
   
-  export const mapGroups = [
+  export const mapGroups:mapGroupsType = [
     {
       groupId: 1,
       groupName: 'Strawberries',
@@ -378,7 +386,22 @@ export const weatherIcons = {
     },
   ];
   
-  export const mapSampleData = [
+  type mapSampleDataTypes = {
+      deviceId: number,
+      deviceName: string,
+      siteId: number,
+      siteName: string,
+      farmId: number,
+      farmName: string,
+      groupId: number,
+      groupName: string,
+      location: { lat: number, lng: number },
+      siteLocation: { lat: number, lng: number },
+      rssi: number,
+      battery: number,
+      lastPublished: Date
+  }
+  export const mapSampleData: mapSampleDataTypes | { }= [
     {
       deviceId: 1,
       deviceName: 'device1',

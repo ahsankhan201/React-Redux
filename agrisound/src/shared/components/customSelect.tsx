@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OutlinedInput, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
-import PropTypes from 'prop-types';
+
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -12,7 +12,9 @@ const MenuProps = {
     },
   },
 };
-
+// interface CustomSelectProps {
+//   options: 
+// }
 export const CustomSelect = ({
   options = [],
   onChange,
@@ -20,8 +22,8 @@ export const CustomSelect = ({
   label = '',
   disabled = false,
   selectedValue = 'Choose',
-  sx = { m: 1, width: '100%', margin: 0},
-}) => {
+  sx = { m: 1, width: '100%', margin: 0}
+}: any) => {
   return (
     <FormControl sx={sx}>
       <InputLabel id="demo-multiple-name-label">{label}</InputLabel>
@@ -38,7 +40,7 @@ export const CustomSelect = ({
         <MenuItem value={'Choose'} disabled>
           Choose
         </MenuItem>
-        {options?.map(({ label, value }) => (
+        {options?.map(({ label, value }:any) => (
           <MenuItem style={{ display: 'block' }} key={label} value={value}>
             {label}
           </MenuItem>
@@ -48,10 +50,3 @@ export const CustomSelect = ({
   );
 };
 
-CustomSelect.propTypes = {
-  options: PropTypes.array,
-  onSelectChange: PropTypes.func,
-  isMulti: PropTypes.bool,
-  label: PropTypes.string,
-  disabled: PropTypes.bool,
-};

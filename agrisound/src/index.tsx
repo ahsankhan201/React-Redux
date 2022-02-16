@@ -15,7 +15,7 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<App />}>
             <Route path="barcharts" element={<Barchart />} />
-            <Route path="mapwithdropdown" element={<Map />} />
+            <Route path="mapwithdropdown" element={<Map/>} />
           </Route>
         </Routes>
       </BrowserRouter>

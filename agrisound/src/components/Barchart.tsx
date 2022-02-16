@@ -8,28 +8,35 @@ import DenseTable from "../shared/components/denseTableMui";
 import { datePickerDropDownConfig as selectDurationData } from "../data/sampledata";
 import { pollinatorReportSampleData } from "../data/sampledata";
 
-const DurationFilter = ({ filters = [], onFilterChange }) => {
-  return filters.map((filter, index) => (
+
+type DurationFilterProps = {
+  filters:any[],
+  onFilterChange:any
+}
+const DurationFilter = (props:DurationFilterProps): JSX.Element => {
+  return<> 
+    {props.filters.map((filter, index) => (
     <CustomButton
       key={index}
       variant={filter.active ? "contained" : "outlined"}
       label={filter.title}
-      onClick={() => onFilterChange(filter.title)}
+      onClick={() => props.onFilterChange(filter.title)}
     />
-  ));
+  ))}
+</>
 };
 let defaultActiveFilter = "days";
 
 export default function Barchart() {
   const [selectDurations, setSelectDurations] = useState(defaultActiveFilter);
   const [chartOptions, setChartOptions] = useState({});
-  const getDefaultDurationValue = (filter) => {
+  const getDefaultDurationValue = (filter: any) => {
     return pollinatorReportSampleData[filter][0].value;
   };
   const [durationRange, setDurationRange] = useState(
     getDefaultDurationValue(defaultActiveFilter)
   );
-  const getChartData = (filter, selectedDuration) => {
+  const getChartData = (filter: any, selectedDuration: any) => {
     return pollinatorReportSampleData[filter].slice(0, selectedDuration);
   };
 
@@ -47,7 +54,7 @@ export default function Barchart() {
     setChartData(getChartData(selectDurations, durationRange));
   }, [selectDurations, durationRange]);
 
-  const onFilterChange = (filter) => {
+  const onFilterChange = (filter: any) => {
     setSelectDurations(filter);
     let updatedButtonsData = durantionFilters.map((item) => {
       return {
@@ -57,14 +64,13 @@ export default function Barchart() {
     });
     setDurantionFilters(updatedButtonsData);
   };
-  const handleSelectChange = (e) => {
+  const handleSelectChange = (e: any) => {
     setDurationRange(e.target.value);
   };
-  // console.log(selectDurations)
   useEffect(() => {
-    let xAxisLabel = [];
-    let seriesData = [];
-    chartData?.forEach((item) => {
+    let xAxisLabel: any = [];
+    let seriesData: any = [];
+    chartData?.forEach((item: any) => {
       xAxisLabel.push(item.label);
       seriesData.push(item.tempAverage);
     });
@@ -93,10 +99,13 @@ export default function Barchart() {
     setChartOptions(options);
   }, [chartData]);
 
-  const dayLightHours = chartData.map((item) => item.daylightHours);
-  const averageWeatherRecords = chartData.map((item) => item.tempAverage);
-  const windSpeeds = chartData.map((item) => item.wind);
-  const temperatureRanges = chartData.map(({ tempHigh, tempLow }) => ({
+  const dayLightHours = chartData.map((item: any) => item.daylightHours);
+  const averageWeatherRecords = chartData.map((item: any) => item.tempAverage);
+  const windSpeeds = chartData.map((item: any) => item.wind);
+  const temperatureRanges = chartData.map(({
+    tempHigh,
+    tempLow
+  }: any) => ({
     tempLow,
     tempHigh,
   }));

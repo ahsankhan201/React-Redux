@@ -1,12 +1,13 @@
+import React from 'react';
 import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
+import {Stack} from "@mui/material";
 export default function CustomButton({
   variant,
   label,
   backgroundColor,
   color,
-  onClick,
-}) {
+  onClick
+}: any) {
   return (
     <Stack direction="row" spacing={2}>
       <Button
